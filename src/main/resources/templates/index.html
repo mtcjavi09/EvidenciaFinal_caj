@@ -17,7 +17,7 @@
                 <thead>
                     <tr>
                         <th>ID del cálculo</th>
-                        <th>Usuario</th>
+                        <th>Email</th>
                         <th>Estatura</th>
                         <th>Peso</th>
                         <th>Imc</th>
@@ -27,7 +27,7 @@
                 <tbody>
                     <tr th:each="imc : ${listImc}">
                         <td th:text="${imc.id}">ID del cálculo</td>
-                        <td th:text="${imc.usuario}">Usuario</td>
+                        <td th:text="${imc.email}">Email</td>
                         <td th:text="${imc.estatura}">Estatura</td>
                         <td th:text="${imc.peso}">Peso</td>
                         <td th:text="${imc.imc}">Imc</td>

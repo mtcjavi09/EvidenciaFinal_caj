@@ -16,7 +16,7 @@ public class ImcDTO
 {
     //Atributos de la clase
     private int id;
-    private String usuario;
+    private String email;
     private float estatura;
     private float peso;
     private float imc;
@@ -25,14 +25,14 @@ public class ImcDTO
     //Getters y setters
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
-    public String getUsuario() {return usuario;}
-    public void setUsuario(String usuario) {this.usuario = usuario;}
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
     public float getEstatura() {return estatura;}
     public void setEstatura(float estatura) {this.estatura = estatura;}
     public float getPeso() {return peso;}
     public void setPeso(float peso) {this.peso = peso;}
     public float getImc() {return imc;}
-    public void setImc() {this.imc = (float) (peso / pow(estatura,2.0));}
+    public void setImc(float imc) {this.imc = imc;}
     public Date getFecha() {return fecha;}
     public void setFecha(Date fecha) {this.fecha = fecha;}
 }

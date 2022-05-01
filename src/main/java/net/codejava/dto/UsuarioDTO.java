@@ -18,7 +18,7 @@ public class UsuarioDTO
     private String apellido;
     private int edad;
     private char genero;
-    private String usuario;
+    private String email;
     private String contraseña;
 
     //Getters y setters
@@ -32,8 +32,8 @@ public class UsuarioDTO
     public void setEdad(int edad) {this.edad = edad;}
     public char getGenero() {return genero;}
     public void setGenero(char genero) {this.genero = genero;}
-    public String getUsuario() {return usuario;}
-    public void setUsuario(String usuario) {this.usuario = usuario;}
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
     public String getContraseña() {return contraseña;}
     public void setContraseña(String contraseña) {this.contraseña = contraseña;}    
 }

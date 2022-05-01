@@ -39,8 +39,8 @@ public class Usuario
     @Column(name="genero")
     private char genero;
     
-    @Column(name="usuario")
-    private String usuario;
+    @Column(name="email")
+    private String email;
     
     @Column(name="contraseña")
     private String contraseña;
@@ -57,7 +57,7 @@ public class Usuario
         this.apellido = usuarioDTO.getApellido();
         this.edad = usuarioDTO.getEdad();
         this.genero = usuarioDTO.getGenero();
-        this.usuario = usuarioDTO.getUsuario();
+        this.email = usuarioDTO.getEmail();
         this.contraseña = usuarioDTO.getContraseña();
     }
 
@@ -72,8 +72,8 @@ public class Usuario
     public void setEdad(int edad) {this.edad = edad;}
     public char getGenero() {return genero;}
     public void setGenero(char genero) {this.genero = genero;}
-    public String getUsuario() {return usuario;}
-    public void setUsuario(String usuario) {this.usuario = usuario;}
+    public String getEmail() {return email;}
+    public void setEmail(String usuario) {this.email = email;}
     public String getContraseña() {return contraseña;}
     public void setContraseña(String contraseña) {this.contraseña = contraseña;}
 }

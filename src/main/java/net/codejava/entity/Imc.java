@@ -20,7 +20,7 @@ import net.codejava.dto.ImcDTO;
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
-@Table(name = "IMC")
+@Table(name = "imc")
 @Data
 public class Imc 
 {
@@ -30,8 +30,8 @@ public class Imc
     @Column(name="id")
     private int id;
 
-    @Column(name="usuario")
-    private String usuario;
+    @Column(name="email")
+    private String email;
 
     @Column(name="estatura")
     private float estatura;
@@ -54,7 +54,7 @@ public class Imc
     public Imc(ImcDTO imcDTO) 
     {
         this.id = imcDTO.getId();
-        this.usuario = imcDTO.getUsuario();
+        this.email = imcDTO.getEmail();
         this.estatura = imcDTO.getEstatura();
         this.peso = imcDTO.getPeso();
         this.imc = imcDTO.getImc();
@@ -64,8 +64,8 @@ public class Imc
     //Getters y setters
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
-    public String getUsuario() {return usuario;}
-    public void setUsuario(String usuario) {this.usuario = usuario;}
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
     public float getEstatura() {return estatura;}
     public void setEstatura(float estatura) {this.estatura = estatura;}
     public float getPeso() {return peso;}
