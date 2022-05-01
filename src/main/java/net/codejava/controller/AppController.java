@@ -1,14 +1,11 @@
 package net.codejava.controller;
 
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.http.HttpSession;
-
-import net.codejava.services.ProductService;
 import net.codejava.entity.Formulario;
 import net.codejava.entity.Imc;
-import net.codejava.entity.Product;
 import net.codejava.services.ImcService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,25 +16,25 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class AppController {
-
-    @Autowired
-    private ProductService service;
+public class AppController 
+{
     @Autowired
     private ImcService imcService;
 
     @RequestMapping("/")
-    public String viewHomePage(HttpSession session, Model model) {
-
-        if (session.getAttribute("mySessionAttribute") != null) {
-            List<Product> listProducts = service.listAll();
-            model.addAttribute("listProducts", listProducts);
+    public String viewHomePage(HttpSession session, Model model) 
+    {
+        if (session.getAttribute("mySessionAttribute") != null) 
+        {
+            Iterable<Imc> listImc = imcService.getImc();
+            model.addAttribute("listImc", listImc);
             return "index";
-        } else {
+        } 
+        else 
+        {
             model.addAttribute("formulario", new Formulario());
             return "login";
         }
-        //model.addAttribute("listProducts", listProducts);
     }
 
     @RequestMapping("/login")
@@ -49,37 +46,32 @@ public class AppController {
     }
 
     @RequestMapping("/new")
-    public String showNewProductPage(Model model) {
-        Product product = new Product();
-        model.addAttribute("product", product);
+    public String showNewImcPage(Model model) 
+    {
+        Imc imc = new Imc();
+        model.addAttribute("imc", imc);
 
-        return "new_product";
+        return "new_imc";
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveProduct(@ModelAttribute("product") Product product) {
-        service.save(product);
-        Imc imc = new Imc();
-        imc.setId(1);
-        imc.setNombrePersona("Alfredo");
-        imc.setAltura(1.80);
-        imc.setPeso(87d);
-        imcService.save(imc);
+    public String saveImc(@ModelAttribute("imc") Imc Imc) 
+    {
+        imcService.guardarImc(Imc);
         return "redirect:/";
     }
 
     @RequestMapping("/edit/{id}")
-    public ModelAndView showEditProductPage(@PathVariable(name = "id") int id) {
+    public ModelAndView showEditImcPage(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("edit_product");
-        Product product = service.get(id);
-        mav.addObject("product", product);
-
+        Optional<Imc> imc = imcService.getImcById(id);
+        mav.addObject("imc", imc);
         return mav;
     }
 
     @RequestMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable(name = "id") int id) {
-        service.delete(id);
+    public String deleteImc(@PathVariable(name = "id") int id) {
+        imcService.borrarImc(id);
         return "redirect:/";
     }
 }
