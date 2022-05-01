@@ -2,9 +2,14 @@ package net.codejava.controller;
 
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
-import net.codejava.entity.Formulario;
+import net.codejava.Formulario;
+import net.codejava.dto.ImcDTO;
+import net.codejava.dto.UsuarioDTO;
 import net.codejava.entity.Imc;
+import net.codejava.entity.Usuario;
 import net.codejava.services.ImcService;
+import net.codejava.services.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +24,9 @@ public class AppController
 {
     @Autowired
     private ImcService imcService;
+    
+    @Autowired
+    private UserService userService;
 
     @RequestMapping("/")
     public String viewHomePage(HttpSession session, Model model) 
@@ -44,19 +52,35 @@ public class AppController
         return "redirect:/";
     }
 
-    @RequestMapping("/new")
+    @RequestMapping("/newImc")
     public String showNewImcPage(Model model) 
     {
-        Imc imc = new Imc();
-        model.addAttribute("imc", imc);
+        ImcDTO imcDTO = new ImcDTO();
+        model.addAttribute("imc", imcDTO);
 
         return "new_imc";
     }
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String saveImc(@ModelAttribute("imc") Imc Imc) 
+    
+    @RequestMapping("/newUsuario")
+    public String showNewUserPage(Model model) 
     {
-        imcService.guardarImc(Imc);
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        model.addAttribute("usuario", usuarioDTO);
+
+        return "new_usuario";
+    }
+    
+    @RequestMapping(value = "/saveImc", method = RequestMethod.POST)
+    public String saveImc(@ModelAttribute("imc") Imc imc) 
+    {
+        imcService.guardarImc(imc);
+        return "redirect:/";
+    }
+
+    @RequestMapping(value = "/saveUsuario", method = RequestMethod.POST)
+    public String saveUsuario(@ModelAttribute("usuario") Usuario usuario) 
+    {
+        userService.guardarUsuario(usuario);
         return "redirect:/";
     }
 

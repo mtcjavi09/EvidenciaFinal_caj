@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8" />
+        <title>Calcular nuevo usuario</title>
+    </head>
+    <body>
+        <div align="center">
+            <h1>Calcula tu usuario</h1>
+            <br/>
+            <form action="#" th:action="@{/saveUsuario}" th:object="${usuario}" method="post">
+
+                <table border="0" cellpadding="10">
+                    <tr>
+                        <td>Ingresa tu(s) nombre(s):</td>
+                        <td><input type="text" th:field="*{nombre}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Ingresa tus apellidos:</td>
+                        <td><input type="text" th:field="*{apellido}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Ingresa tu edad:</td>
+                        <td><input type="text" th:field="*{edad}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Ingresa tu género:</td>
+                        <td><input type="radio" th:field="*{genero}" value="F"/>Femenino</td>
+                        <td><input type="radio" th:field="*{genero}" value="M"/>Masculino</td>
+                        <td><input type="radio" th:field="*{genero}" value="NA"/>Prefiero no decirlo</td>
+                    </tr>
+                    <tr>
+                        <td>Ingresa tu usuario</td>
+                        <td><input type="radio" th:field="*{usuario}"/></td>
+                    </tr>
+                    <tr>
+                        <td>Ingresa tu contraseña</td>
+                        <td><input type="radio" th:field="*{usuario}" placeholder="***********"/></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit">Crear usuario</button> </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </body>
+</html>

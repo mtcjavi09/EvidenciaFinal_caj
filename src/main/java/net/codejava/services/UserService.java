@@ -5,19 +5,35 @@
  */
 package net.codejava.services;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author jose.jimenez07
- */
+import net.codejava.entity.Usuario;
+import net.codejava.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
 @Service
-public class UserService {
+public class UserService 
+{
+    @Autowired
+    UserRepository userRepository;
 
-    @PersistenceContext
-    private EntityManager em;
+    public Iterable<Usuario> getUsuario() {return userRepository.findAll();}
+    
+    public Optional<Usuario> getUsuarioById(Integer id) {return userRepository.findById(id);}
 
+    public Usuario guardarUsuario(Usuario usuario) {return userRepository.save(usuario);}
+
+    public Usuario actualizarUsuario(Integer id, Usuario usuario) 
+    {
+        usuario.setId(id);
+        return userRepository.save(usuario);
+    }
+
+    public void borrarUsuario(Integer id) 
+    {
+        Optional<Usuario> usuario = userRepository.findById(id);
+        userRepository.delete(usuario.get());
+    }
 }

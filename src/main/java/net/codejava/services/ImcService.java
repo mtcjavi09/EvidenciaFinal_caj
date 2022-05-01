@@ -1,8 +1,8 @@
 /*
-    PRUEBA SPRINGBOOT   : ImcService
+    EVIDENCIA FINAL     : ImcService
     AUTORA              : Maria Tchijov Cruz
     FECHA               : 11 abr 2022
-    Servicio principal de la aplicación
+    Servicio para la tabla IMC
 */
 
 package net.codejava.services;
@@ -33,7 +33,7 @@ public class ImcService
 
     public void borrarImc(Integer id) 
     {
-        Optional<Imc> persona = imcRepository.findById(id);
-        imcRepository.delete(persona.get());
+        Optional<Imc> imc = imcRepository.findById(id);
+        imcRepository.delete(imc.get());
     }
 }
