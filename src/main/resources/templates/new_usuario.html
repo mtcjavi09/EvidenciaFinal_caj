@@ -13,6 +13,10 @@
 
                 <table border="0" cellpadding="10">
                     <tr>
+                        <td>Usuario número:</td>
+                        <td><input type="text" th:field="*{id}" readonly="readonly"/></td>
+                    </tr>
+                    <tr>
                         <td>Ingresa tu(s) nombre(s):</td>
                         <td><input type="text" th:field="*{nombre}"/></td>
                     </tr>
@@ -28,15 +32,15 @@
                         <td>Ingresa tu género:</td>
                         <td><input type="radio" th:field="*{genero}" value="F"/>Femenino</td>
                         <td><input type="radio" th:field="*{genero}" value="M"/>Masculino</td>
-                        <td><input type="radio" th:field="*{genero}" value="NA"/>Prefiero no decirlo</td>
+                        <td><input type="radio" th:field="*{genero}" value="X"/>No quiero decirlo</td>
                     </tr>
                     <tr>
                         <td>Ingresa tu usuario</td>
-                        <td><input type="radio" th:field="*{usuario}"/></td>
+                        <td><input type="text" th:field="*{usuario}"/></td>
                     </tr>
                     <tr>
                         <td>Ingresa tu contraseña</td>
-                        <td><input type="radio" th:field="*{usuario}" placeholder="***********"/></td>
+                        <td><input type="text" th:field="*{contraseña}" placeholder="***********"/></td>
                     </tr>
                     <tr>
                         <td colspan="2"><button type="submit">Crear usuario</button> </td>
