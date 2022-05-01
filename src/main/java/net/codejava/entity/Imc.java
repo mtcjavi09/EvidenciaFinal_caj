@@ -10,6 +10,7 @@ package net.codejava.entity;
 //Se importan las librerías necesarias para la entidad
 import static java.lang.Math.pow;
 import java.time.LocalDate;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -52,7 +53,8 @@ public class Imc
     private float imc;
     
     @Column(name="fecha")
-    private String fecha;
+    @CreationTimestamp
+    private Date fecha;
     
     //Se generan los constructores necesarios para la aplicación
     //Constructor vacío
@@ -60,7 +62,9 @@ public class Imc
     
     //Constructor con datos
 
-    public Imc(int id, String nombre, String apellido, int edad, char genero, float estatura, float peso) {
+    public Imc(int id, String nombre, String apellido, int edad, char genero, float estatura, 
+            float peso, float imc, Date fecha) 
+    {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -68,8 +72,8 @@ public class Imc
         this.genero = genero;
         this.estatura = estatura;
         this.peso = peso;
-        this.imc = (float) (peso / pow(estatura,2.0));
-        this.fecha = LocalDate.now().toString();
+        this.imc = imc;
+        this.fecha = fecha;
     }
     
     
@@ -90,6 +94,6 @@ public class Imc
     public void setPeso(float peso) {this.peso = peso;}
     public float getImc() {return imc;}
     public void setImc(float imc) {this.imc = imc;}
-    public String getFecha() {return fecha;}
-    public void setFecha(String fecha) {this.fecha = fecha;}
+    public Date getFecha() {return fecha;}
+    public void setFecha(Date fecha) {this.fecha = fecha;}
 }

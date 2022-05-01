@@ -62,7 +62,7 @@ public class AppController
 
     @RequestMapping("/edit/{id}")
     public ModelAndView showEditImcPage(@PathVariable(name = "id") int id) {
-        ModelAndView mav = new ModelAndView("edit_product");
+        ModelAndView mav = new ModelAndView("edit_imc");
         Optional<Imc> imc = imcService.getImcById(id);
         mav.addObject("imc", imc);
         return mav;
