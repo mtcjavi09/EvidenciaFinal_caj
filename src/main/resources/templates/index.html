@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
+        <title>Tus IMC calculados</title>
         <meta charset="utf-8"/>
         <link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
@@ -11,31 +11,38 @@
     <body>
         <div align="center">
             <p th:text="${session.mySessionAttribute}" th:unless="${session == null}">[...]</p>
-            <h1>Product List</h1>
+            <h1>Lista de imc</h1>
             <a href="new">Create New Product</a>
             <br/><br/>
             <table border="1" cellpadding="10" class="table table-striped table-hover">
                 <thead>
                     <tr>
-                        <th>Product ID</th>
-                        <th>Name</th>
-                        <th>Brand</th>
-                        <th>Made In</th>
-                        <th>Price</th>
-                        <th>Actions</th>
+                        <th>ID del cálculo</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Edad</th>
+                        <th>Género</th>
+                        <th>Estatura</th>
+                        <th>Peso</th>
+                        <th>Imc</th>
+                        <th>Fecha</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="product : ${listProducts}">
-                        <td th:text="${product.id}">Product ID</td>
-                        <td th:text="${product.name}">Name</td>
-                        <td th:text="${product.brand}">Brand</td>
-                        <td th:text="${product.madein}">Made in</td>
-                        <td th:text="${product.price}">Price</td>
+                    <tr th:each="imc : ${listImc}">
+                        <td th:text="${imc.id}">ID del cálculo</td>
+                        <td th:text="${imc.nombre}">Nombre</td>
+                        <td th:text="${imc.apellido}">Apellido</td>
+                        <td th:text="${imc.edad}">Edad</td>
+                        <td th:text="${imc.genero}">Género</td>
+                        <td th:text="${imc.estatura}">Estatura</td>
+                        <td th:text="${imc.peso}">Peso</td>
+                        <td th:text="${imc.imc}">Imc</td>
+                        <td th:text="${imc.fecha}">Fecha</td>
                         <td>
-                            <a th:href="@{'/edit/' + ${product.id}}">Edit</a>
+                            <a th:href="@{'/edit/' + ${imc.id}}">Edit</a>
                             &nbsp;&nbsp;&nbsp;
-                            <a th:href="@{'/delete/' + ${product.id}}">Delete</a>
+                            <a th:href="@{'/delete/' + ${imc.id}}">Delete</a>
                         </td>
                     </tr>
                 </tbody>

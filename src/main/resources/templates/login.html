@@ -23,9 +23,6 @@
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
-                                <div class="brand-wrapper">
-                                    <img src="assets/images/logo.svg" alt="logo" class="logo">
-                                </div>
                                 <p class="login-card-description">Sign into your account</p>
                                 <form action="#" th:action="@{/login}" th:object="${formulario}" 
                                       method="post">
@@ -39,10 +36,6 @@
                                     </div>
                                     <input name="login" id="login" class="btn btn-block login-btn mb-4" type="submit" value="Iniciar sesión">
                                 </form>
-                                <nav class="login-card-footer-nav">
-                                    <a href="#!">Terminos de uso.</a>
-                                    <a href="#!">Política de privacidad </a>
-                                </nav>
                             </div>
                         </div>
                     </div>
