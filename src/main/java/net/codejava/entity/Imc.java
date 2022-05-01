@@ -8,8 +8,6 @@
 package net.codejava.entity;
 
 //Se importan las librerías necesarias para la entidad
-import static java.lang.Math.pow;
-import java.time.LocalDate;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
