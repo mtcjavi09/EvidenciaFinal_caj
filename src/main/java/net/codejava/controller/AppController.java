@@ -34,6 +34,8 @@ public class AppController
         {
             Iterable<Imc> listImc = imcService.getImc();
             model.addAttribute("listImc", listImc);
+            Iterable<Usuario> listUsuarios = userService.getUsuario();
+            model.addAttribute("listUsuarios", listUsuarios);
             return "index";
         } 
         else 

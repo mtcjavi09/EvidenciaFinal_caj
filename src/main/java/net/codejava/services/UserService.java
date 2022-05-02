@@ -22,7 +22,7 @@ public class UserService
     public Iterable<Usuario> getUsuario() {return userRepository.findAll();}
     
     public Optional<Usuario> getUsuarioById(Integer id) {return userRepository.findById(id);}
-
+    
     public Usuario guardarUsuario(Usuario usuario) {return userRepository.save(usuario);}
 
     public Usuario actualizarUsuario(Integer id, Usuario usuario) 

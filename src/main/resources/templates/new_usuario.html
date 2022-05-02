@@ -14,25 +14,27 @@
                 <table border="0" cellpadding="10">
                     <tr>
                         <td>Ingresa tu(s) nombre(s):</td>
-                        <td><input type="text" th:field="*{nombre}"/></td>
+                        <td><input type="text" th:field="*{nombre}" placeholder="Tus nombres"/></td>
                     </tr>
                     <tr>
                         <td>Ingresa tus apellidos:</td>
-                        <td><input type="text" th:field="*{apellido}"/></td>
+                        <td><input type="text" th:field="*{apellido}" placeholder="Tus apellidos"/></td>
                     </tr>
                     <tr>
                         <td>Ingresa tu edad:</td>
-                        <td><input type="text" th:field="*{edad}"/></td>
+                        <td><input type="text" th:field="*{edad}" placeholder="Tu edad actual"/></td>
                     </tr>
                     <tr>
-                        <td><br>Ingresa tu género:</br></td>
-                        <td><input type="radio" th:field="*{genero}" value="F"/><br>Femenino</br></td>
-                        <td><input type="radio" th:field="*{genero}" value="M"/><br>Masculino</br></td>
-                        <td><input type="radio" th:field="*{genero}" value="X"/><br>No quiero decirlo</br></td>
+                        <td>Ingresa tu género:</td>
+                        <td>
+                            <input type="radio" th:field="*{genero}" value="F"/><br>Femenino</br>
+                            <input type="radio" th:field="*{genero}" value="M"/><br>Masculino</br>
+                            <input type="radio" th:field="*{genero}" value="X"/><br>No quiero decirlo</br>
+                        </td>
                     </tr>
                     <tr>
                         <td>Ingresa tu usuario</td>
-                        <td><input type="email" th:field="*{email}" placeholder="xxxx@dominio.xx"/></td>
+                        <td><input type="email" th:field="*{email}" placeholder="xxxx@dominio.xxx"/></td>
                     </tr>
                     <tr>
                         <td>Ingresa tu contraseña</td>
