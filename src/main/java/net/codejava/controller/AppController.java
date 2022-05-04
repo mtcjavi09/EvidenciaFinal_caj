@@ -142,6 +142,24 @@ public class AppController
         return mav;
     }
     
+    @RequestMapping("/changePassword/{id}")
+    public ModelAndView showChangePasswordPage(@PathVariable(name = "id") int id) 
+    {
+        ModelAndView mav = new ModelAndView("change_password");
+        Optional<Usuario> user = userService.getUsuarioById(id);
+        mav.addObject("user", user);
+        return mav;
+    }
+    
+    @RequestMapping("/editUser/{id}")
+    public ModelAndView showEditUsuarioPage(@PathVariable(name = "id") int id) 
+    {
+        ModelAndView mav = new ModelAndView("change_password");
+        Optional<Usuario> changedUser = userService.getUsuarioById(id);
+        mav.addObject("changedUser", changedUser);
+        return mav;
+    }
+    
     @RequestMapping("/delete/{id}")
     public String deleteImc(@PathVariable(name = "id") int id) 
     {

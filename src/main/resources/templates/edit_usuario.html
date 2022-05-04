@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8"/>
+        <title>Edit Product</title>
+    </head>
+    <body>
+	<div align="center">
+            <br/><h1>Edit Product</h1><br/>
+            <form action="#" th:action="@{/saveUsuario}" th:object="${changedUser}" method="post">
+                <table border="0" cellpadding="10">
+                    <tr>				
+                        <td>Tu número de usuario:</td>
+                        <td>
+                            <input type="text" th:field="*{id}" readonly="readonly"/>
+                        </td>
+                    </tr>
+                    <tr>				
+                        <td>Ingresa el(los) nuevo(s) nombre(s):</td>
+                        <td>
+                            <input type="text" th:field="*{nombre}"/>
+                        </td>
+                    </tr>
+                    <tr>				
+                        <td>Ingresa los nuevos apellidos:</td>
+                        <td>
+                            <input type="text" th:field="*{apellido}"/>
+                        </td>
+                    </tr>
+                    <tr>				
+                        <td>Ingresa la nueva edad:</td>
+                        <td>
+                            <input type="text" th:field="*{edad}"/>
+                        </td>
+                    </tr>
+                    <tr>				
+                        <td>Ingresa el nuevo género:</td>
+                        <td>
+                            <input type="text" th:field="*{genero}"/>
+                        </td>
+                    </tr>
+                    <tr>				
+                        <td>Tu email es:</td>
+                        <td>
+                            <input type="email" th:field="*{email}" readonly="readonly"/>
+                        </td>
+                    </tr>
+                    <tr>				
+                        <td>Tu contraseña es: </td>
+                        <td>
+                            <input type="password" th:field="*{contraseña}" readonly="readonly"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><button type="submit">Cambiar datos</button></td>
+                    </tr>
+                </table>
+            </form>
+	</div>
+    </body>
+</html>
