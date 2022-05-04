@@ -73,7 +73,7 @@ public class Usuario
     public char getGenero() {return genero;}
     public void setGenero(char genero) {this.genero = genero;}
     public String getEmail() {return email;}
-    public void setEmail(String usuario) {this.email = email;}
+    public void setEmail(String email) {this.email = email;}
     public String getContraseña() {return contraseña;}
     public void setContraseña(String contraseña) {this.contraseña = contraseña;}
 }

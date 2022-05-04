@@ -5,10 +5,9 @@
  */
 package net.codejava.services;
 
-
+import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
-
 import net.codejava.entity.Usuario;
 import net.codejava.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,7 @@ public class UserService
     @Autowired
     UserRepository userRepository;
 
-    public Iterable<Usuario> getUsuario() {return userRepository.findAll();}
+    public List<Usuario> getUsuario() {return (List<Usuario>) userRepository.findAll();}
     
     public Optional<Usuario> getUsuarioById(Integer id) {return userRepository.findById(id);}
     

@@ -1,8 +1,8 @@
 package net.codejava.controller;
 
 import static java.lang.Math.pow;
-import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import net.codejava.Formulario;
@@ -36,13 +36,11 @@ public class AppController
         if (session.getAttribute("mySessionAttribute") != null) 
         {
             Iterable<Imc> listImc = imcService.getImc();
-            model.addAttribute("listImc", listImc);            
+            model.addAttribute("listImc", listImc);
             return "index";
         } 
         else 
         {
-            Iterable<Usuario> listUsuarios = userService.getUsuario();
-            session.setAttribute("listUsuarios", listUsuarios);
             model.addAttribute("formulario", new Formulario());
             return "login";
         }       
@@ -52,21 +50,31 @@ public class AppController
     public String login(HttpSession session, Model model,
             @ModelAttribute("formulario") Formulario formulario) 
     {
-        ArrayList<Usuario> usuarios = (ArrayList<Usuario>) session.getAttribute("listUsuarios");
+        List<Usuario> usuarios = userService.getUsuario();
+        model.addAttribute("listUsuarios", usuarios);
         boolean encontrado = usuarios.stream().anyMatch(x -> 
                 x.getEmail().equals(formulario.getEmail()) 
                         && x.getContraseña().equals(formulario.getPassword()));
         if (encontrado == true)
         {
+            int indice = 0;
             session.setAttribute("mySessionAttribute", "login");
-            Iterator<Usuario> iterador = usuarios.iterator();
-            while(iterador.hasNext())
+            for(int x=0; x<usuarios.size(); x++)
             {
-                Usuario usuario = iterador.next();
-                String email = usuario.getEmail();
+                Usuario indexUsuario = usuarios.get(x);
+                String email = indexUsuario.getEmail();
                 if(email.equals(formulario.getEmail()))
-                {model.addAttribute("usuario", usuario);}
+                {
+                    System.out.println(indexUsuario);
+                    indice = x;
+                }
             }
+            
+            System.out.println(indice);
+            Usuario usuario = usuarios.get(indice);
+            System.out.println(usuario);
+            model.addAttribute("usuario", usuario);
+            
             return "redirect:/";
         }
         else
@@ -88,7 +96,8 @@ public class AppController
     @RequestMapping("/newUsuario")
     public String showNewUserPage(Model model) 
     {
-        model.addAttribute("usuario", new UsuarioDTO());
+        UsuarioDTO usuarioDTO = new UsuarioDTO();
+        model.addAttribute("usuarioNVO", usuarioDTO);
         return "new_usuario";
     }
     
@@ -98,13 +107,15 @@ public class AppController
         float peso = imc.getPeso();
         float estatura = imc.getEstatura();
         imc.setImc((float) (peso / pow(estatura,2.0)));
+        System.out.println(imc);
         imcService.guardarImc(imc);
         return "redirect:/";
     }
 
     @RequestMapping(value = "/saveUsuario", method = RequestMethod.POST)
-    public String saveUsuario(@ModelAttribute("usuario") Usuario usuario) 
+    public String saveUsuario(@ModelAttribute("usuarioNVO") Usuario usuario) 
     {
+        System.out.println(usuario);
         userService.guardarUsuario(usuario);
         return "redirect:/";
     }
