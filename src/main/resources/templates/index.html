@@ -10,25 +10,25 @@
     </head>
     <body>
         <div align="center">
-            <h1></br>Lista de IMC</h1>            
+            <h1></br>Lista de IMC</h1>
             <br/><br/>
-            <table border="1" cellpadding="12" class="table table-striped table-hover">
-                Tus datos:</br><br/>
+            Tus datos:
+            <table border="1" cellpadding="10" class="table table-striped table-hover">
                 <thead>
                     <tr>
                         <th>ID de usuario</th>
-                        <th>Nombre</th>
-                        <th>Apellido</th>
+                        <th>Nombre(s)</th>
+                        <th>Apellidos</th>
                         <th>Edad</th>
                         <th>Género</th>
                         <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr th:each="usuario : ${usuario}">
+                    <tr th:each="usuario : ${sessionUser}">
                         <td th:text="${usuario.id}">ID de usuario</td>
-                        <td th:text="${usuario.nombre}">Nombre</td>
-                        <td th:text="${usuario.apellido}">Apellido</td>
+                        <td th:text="${usuario.nombre}">Nombre(s)</td>
+                        <td th:text="${usuario.apellido}">Apellidos</td>
                         <td th:text="${usuario.edad}">Edad</td>
                         <td th:text="${usuario.genero}">Género</td>
                         <td th:text="${usuario.email}">Email</td>
@@ -46,6 +46,7 @@
                         <th>Peso</th>
                         <th>Imc</th>
                         <th>Fecha</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>

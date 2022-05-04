@@ -1,6 +1,7 @@
 package net.codejava.controller;
 
 import static java.lang.Math.pow;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -35,7 +36,22 @@ public class AppController
     {
         if (session.getAttribute("mySessionAttribute") != null) 
         {
-            Iterable<Imc> listImc = imcService.getImc();
+            Usuario loggedUser = (Usuario) session.getAttribute("usuarioAutenticado");
+            System.out.println(loggedUser);
+            ArrayList<Usuario> sessionUser = new ArrayList();
+            sessionUser.add(loggedUser);
+            model.addAttribute("sessionUser", sessionUser);
+            List<Imc> imcCompleto = (List<Imc>) imcService.getImc();
+            ArrayList<Imc> listImc = new ArrayList();
+            for(int x=0; x<imcCompleto.size(); x++)
+            {
+                Imc imcIndex = imcCompleto.get(x);
+                String email = imcIndex.getEmail();
+                
+                if(email.equals(loggedUser.getEmail()))
+                {listImc.add(imcIndex);}
+            }
+            System.out.println(listImc.isEmpty());
             model.addAttribute("listImc", listImc);
             return "index";
         } 
@@ -50,31 +66,25 @@ public class AppController
     public String login(HttpSession session, Model model,
             @ModelAttribute("formulario") Formulario formulario) 
     {
-        List<Usuario> usuarios = userService.getUsuario();
-        model.addAttribute("listUsuarios", usuarios);
-        boolean encontrado = usuarios.stream().anyMatch(x -> 
+        List<Usuario> listUsuarios = userService.getUsuario();
+        session.setAttribute("listUsuarios", listUsuarios);
+        boolean encontrado = listUsuarios.stream().anyMatch(x -> 
                 x.getEmail().equals(formulario.getEmail()) 
                         && x.getContraseña().equals(formulario.getPassword()));
         if (encontrado == true)
         {
-            int indice = 0;
             session.setAttribute("mySessionAttribute", "login");
-            for(int x=0; x<usuarios.size(); x++)
+            for(int x=0; x<listUsuarios.size(); x++)
             {
-                Usuario indexUsuario = usuarios.get(x);
-                String email = indexUsuario.getEmail();
+                Usuario usuarioIndex = listUsuarios.get(x);
+                String email = usuarioIndex.getEmail();
+                
                 if(email.equals(formulario.getEmail()))
                 {
-                    System.out.println(indexUsuario);
-                    indice = x;
+                    System.out.println(usuarioIndex);
+                    session.setAttribute("usuarioAutenticado", usuarioIndex);
                 }
             }
-            
-            System.out.println(indice);
-            Usuario usuario = usuarios.get(indice);
-            System.out.println(usuario);
-            model.addAttribute("usuario", usuario);
-            
             return "redirect:/";
         }
         else
@@ -85,10 +95,14 @@ public class AppController
     }
 
     @RequestMapping("/newImc")
-    public String showNewImcPage(Model model, @ModelAttribute("usuario") Usuario usuario) 
+    public String showNewImcPage(HttpSession session, Model model) 
     {
+        Usuario loggedUser = (Usuario) session.getAttribute("usuarioAutenticado");
         ImcDTO imcDTO = new ImcDTO();
-        imcDTO.setEmail(usuario.getEmail());
+        String email = loggedUser.getEmail();
+        System.out.println(email);
+        imcDTO.setEmail(email);
+        System.out.println(imcDTO.getEmail());
         model.addAttribute("imc", imcDTO);
         return "new_imc";
     }
