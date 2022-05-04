@@ -36,7 +36,6 @@ public class AppController
         if (session.getAttribute("mySessionAttribute") != null) 
         {
             Usuario loggedUser = (Usuario) session.getAttribute("usuarioAutenticado");
-            System.out.println(loggedUser);
             ArrayList<Usuario> sessionUser = new ArrayList();
             sessionUser.add(loggedUser);
             model.addAttribute("sessionUser", sessionUser);
@@ -50,7 +49,6 @@ public class AppController
                 if(email.equals(loggedUser.getEmail()))
                 {listImc.add(imcIndex);}
             }
-            System.out.println(listImc.isEmpty());
             model.addAttribute("listImc", listImc);
             return "index";
         } 
@@ -79,10 +77,7 @@ public class AppController
                 String email = usuarioIndex.getEmail();
                 
                 if(email.equals(formulario.getEmail()))
-                {
-                    System.out.println(usuarioIndex);
-                    session.setAttribute("usuarioAutenticado", usuarioIndex);
-                }
+                {session.setAttribute("usuarioAutenticado", usuarioIndex);}
             }
             return "redirect:/";
         }
@@ -99,9 +94,8 @@ public class AppController
         Usuario loggedUser = (Usuario) session.getAttribute("usuarioAutenticado");
         ImcDTO imcDTO = new ImcDTO();
         String email = loggedUser.getEmail();
-        System.out.println(email);
         imcDTO.setEmail(email);
-        System.out.println(imcDTO.getEmail());
+
         model.addAttribute("imc", imcDTO);
         return "new_imc";
     }
@@ -119,8 +113,28 @@ public class AppController
     {
         float peso = imc.getPeso();
         float estatura = imc.getEstatura();
-        imc.setImc((float) (peso / pow(estatura,2.0)));
-        System.out.println(imc);
+        float calculoImc = (float) (peso / pow(estatura,2.0));
+        imc.setImc(calculoImc);
+        String explicaResultado = "";
+
+        if(calculoImc < 18.5)
+        {explicaResultado = "Peso bajo";}
+
+        else
+        {
+            if(calculoImc>=18.5 && calculoImc<=24.9)
+            {explicaResultado = "Peso normal";}
+
+            else
+            {
+                if(calculoImc>=25.0 && calculoImc<=29.9)
+                {explicaResultado = "Sobrepeso";}
+
+                else
+                {explicaResultado = "Obesidad";}
+            }
+        }
+        imc.setExplicaResultado(explicaResultado);
         imcService.guardarImc(imc);
         return "redirect:/";
     }
@@ -128,7 +142,6 @@ public class AppController
     @RequestMapping(value = "/saveUsuario", method = RequestMethod.POST)
     public String saveUsuario(@ModelAttribute("usuario") Usuario usuario) 
     {
-        System.out.println(usuario);
         userService.guardarUsuario(usuario);
         return "redirect:/";
     }

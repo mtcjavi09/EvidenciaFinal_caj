@@ -18,6 +18,8 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.UniqueElements;
+
 import lombok.Data;
 import net.codejava.dto.UsuarioDTO;
 
@@ -49,7 +51,7 @@ public class Usuario
     
     @Column(name="email")
     @Email(message="El email debe tener el formato válido")
-    @NotNull(message="El email no puede estar nulo")    
+    @NotNull(message="El email no puede estar nulo")
     private String email;
     
     @Column(name="contraseña")

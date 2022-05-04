@@ -7,6 +7,7 @@
 
 package net.codejava.entity;
 
+import java.lang.annotation.Repeatable;
 //Se importan las librerías necesarias para la entidad
 import java.util.Date;
 import javax.persistence.Column;
@@ -16,8 +17,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import lombok.Data;
@@ -40,10 +41,12 @@ public class Imc
     private String email;
 
     @Column(name="estatura")
+    @Min(value=1, message="La estatura no puede ser menor a 1 metro")
+    @Max(value=(long) 2.5, message="La estatura no puede sobrepasar 2.5 metros")
     private float estatura;
     
     @Column(name="peso")    
-    @Min(value=10, message="El IMC no puede ser menor que 10")
+    @Min(value=13, message="El peso no puede ser menor que 13")
     private float peso;
     
     @Column(name="imc")
@@ -51,6 +54,11 @@ public class Imc
     @Min(value=1, message="El IMC no puede ser cero")
     private float imc;
     
+
+    @Column(name="explicaResultado")
+    @NotNull(message = "La explicación del resultado no puede ser nulo")
+    private String explicaResultado;
+
     @Column(name="fecha")
     @CreationTimestamp
     private Date fecha;
@@ -67,6 +75,7 @@ public class Imc
         this.estatura = imcDTO.getEstatura();
         this.peso = imcDTO.getPeso();
         this.imc = imcDTO.getImc();
+        this.explicaResultado = imcDTO.getExplicaResultado();
         this.fecha = imcDTO.getFecha();
     }
 
@@ -81,6 +90,8 @@ public class Imc
     public void setPeso(float peso) {this.peso = peso;}
     public float getImc() {return imc;}
     public void setImc(float imc) {this.imc = imc;}
+    public String getExplicaResultado() {return explicaResultado;}
+    public void setExplicaResultado(String explicaResultado) {this.explicaResultado = explicaResultado;}
     public Date getFecha() {return fecha;}
     public void setFecha(Date fecha) {this.fecha = fecha;} 
 }

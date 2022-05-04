@@ -20,6 +20,7 @@ public class ImcDTO
     private float estatura;
     private float peso;
     private float imc;
+    private String explicaResultado;
     private Date fecha;
 
     //Getters y setters
@@ -33,6 +34,8 @@ public class ImcDTO
     public void setPeso(float peso) {this.peso = peso;}
     public float getImc() {return imc;}
     public void setImc(float imc) {this.imc = imc;}
+    public String getExplicaResultado() {return explicaResultado;}
+    public void setExplicaResultado(String explicaResultado) {this.explicaResultado = explicaResultado;}
     public Date getFecha() {return fecha;}
     public void setFecha(Date fecha) {this.fecha = fecha;}
 }

@@ -51,6 +51,7 @@
                         <th>Peso</th>
                         <th>Imc</th>
                         <th>Fecha</th>
+                        <th>Explicación del resultado</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -62,9 +63,8 @@
                         <td th:text="${imc.peso}">Peso</td>
                         <td th:text="${imc.imc}">Imc</td>
                         <td th:text="${imc.fecha}">Fecha</td>
-                        <td>
-                            <a th:href="@{'/delete/' + ${imc.id}}">Eliminar registro</a>
-                        </td>
+                        <td th:text="${imc.explicaResultado}">Explicación del resultado</td>
+                        <td><a th:href="@{'/delete/' + ${imc.id}}">Eliminar registro</a></td>
                     </tr>
                 </tbody>
             </table>
