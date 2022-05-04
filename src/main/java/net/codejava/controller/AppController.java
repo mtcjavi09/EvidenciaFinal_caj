@@ -133,14 +133,6 @@ public class AppController
         userService.guardarUsuario(usuario);
         return "redirect:/";
     }
-
-    @RequestMapping("/editImc/{id}")
-    public ModelAndView showEditImcPage(@PathVariable(name = "id") int id) {
-        ModelAndView mav = new ModelAndView("edit_imc");
-        Optional<Imc> imc = imcService.getImcById(id);
-        mav.addObject("imc", imc);
-        return mav;
-    }
     
     @RequestMapping("/changePassword/{id}")
     public ModelAndView showChangePasswordPage(@PathVariable(name = "id") int id) 
@@ -154,7 +146,7 @@ public class AppController
     @RequestMapping("/editUser/{id}")
     public ModelAndView showEditUsuarioPage(@PathVariable(name = "id") int id) 
     {
-        ModelAndView mav = new ModelAndView("change_password");
+        ModelAndView mav = new ModelAndView("edit_usuario");
         Optional<Usuario> changedUser = userService.getUsuarioById(id);
         mav.addObject("changedUser", changedUser);
         return mav;
