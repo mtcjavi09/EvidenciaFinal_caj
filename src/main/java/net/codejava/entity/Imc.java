@@ -42,7 +42,8 @@ public class Imc
     @Column(name="estatura")
     private float estatura;
     
-    @Column(name="peso")
+    @Column(name="peso")    
+    @Min(value=10, message="El IMC no puede ser menor que 10")
     private float peso;
     
     @Column(name="imc")
