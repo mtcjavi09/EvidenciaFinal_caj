@@ -19,11 +19,11 @@
                     </tr>
                     <tr>
                         <td>Ingresa tu estatura:</td>
-                        <td><input type="text" th:field="*{estatura}" required="true" min=1.0 max=2.5/></td>
+                        <td><input type="number" th:field="*{estatura}" step="0.01" required="true" min="1.0" max="2.5"/></td>
                     </tr>
                     <tr>
                         <td>Ingresa tu peso:</td>
-                        <td><input type="text" th:field="*{peso}" required="true" min=0/></td>
+                        <td><input type="number" th:field="*{peso}" step="0.01" required="true" min="0"/></td>
                     </tr>							
                     <tr>
                         <td colspan="2"><button type="submit">Guardar</button> </td>

@@ -40,11 +40,9 @@ public class Imc
     private String email;
 
     @Column(name="estatura")
-    @NotEmpty(message="Necesitas ingresar una estatura")
     private float estatura;
     
     @Column(name="peso")
-    @NotEmpty(message="Necesitas ingresar un peso")
     private float peso;
     
     @Column(name="imc")

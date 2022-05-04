@@ -41,13 +41,10 @@ public class Usuario
     private String apellido;
     
     @Column(name="edad")
-    @NotEmpty(message="No puedes dejar vacío este campo")
-    @NotNull(message="Debes ingresar una edad válida")
     @Min(value=15, message="No puedes registrarte si tienes menos de 15 años")
     private int edad;
     
     @Column(name="genero")
-    @NotEmpty(message="Necesitas definir tu género")
     private char genero;
     
     @Column(name="email")
