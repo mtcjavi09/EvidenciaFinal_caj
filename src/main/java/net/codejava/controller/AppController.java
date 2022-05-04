@@ -97,7 +97,7 @@ public class AppController
     public String showNewUserPage(Model model) 
     {
         UsuarioDTO usuarioDTO = new UsuarioDTO();
-        model.addAttribute("usuarioNVO", usuarioDTO);
+        model.addAttribute("usuario", usuarioDTO);
         return "new_usuario";
     }
     
@@ -113,7 +113,7 @@ public class AppController
     }
 
     @RequestMapping(value = "/saveUsuario", method = RequestMethod.POST)
-    public String saveUsuario(@ModelAttribute("usuarioNVO") Usuario usuario) 
+    public String saveUsuario(@ModelAttribute("usuario") Usuario usuario) 
     {
         System.out.println(usuario);
         userService.guardarUsuario(usuario);
