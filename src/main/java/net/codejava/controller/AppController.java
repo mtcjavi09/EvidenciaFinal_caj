@@ -1,5 +1,8 @@
 package net.codejava.controller;
 
+import static java.lang.Math.pow;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import net.codejava.Formulario;
@@ -33,47 +36,68 @@ public class AppController
         if (session.getAttribute("mySessionAttribute") != null) 
         {
             Iterable<Imc> listImc = imcService.getImc();
-            model.addAttribute("listImc", listImc);
-            Iterable<Usuario> listUsuarios = userService.getUsuario();
-            model.addAttribute("listUsuarios", listUsuarios);
+            model.addAttribute("listImc", listImc);            
             return "index";
         } 
         else 
         {
+            Iterable<Usuario> listUsuarios = userService.getUsuario();
+            session.setAttribute("listUsuarios", listUsuarios);
             model.addAttribute("formulario", new Formulario());
+            return "login";
+        }       
+    }
+
+    @RequestMapping("/login")
+    public String login(HttpSession session, Model model,
+            @ModelAttribute("formulario") Formulario formulario) 
+    {
+        ArrayList<Usuario> usuarios = (ArrayList<Usuario>) session.getAttribute("listUsuarios");
+        boolean encontrado = usuarios.stream().anyMatch(x -> 
+                x.getEmail().equals(formulario.getEmail()) 
+                        && x.getContraseña().equals(formulario.getPassword()));
+        if (encontrado == true)
+        {
+            session.setAttribute("mySessionAttribute", "login");
+            Iterator<Usuario> iterador = usuarios.iterator();
+            while(iterador.hasNext())
+            {
+                Usuario usuario = iterador.next();
+                String email = usuario.getEmail();
+                if(email.equals(formulario.getEmail()))
+                {model.addAttribute("usuario", usuario);}
+            }
+            return "redirect:/";
+        }
+        else
+        {
+            session.setAttribute("mySessionAttribute", null);
             return "login";
         }
     }
 
-    @RequestMapping("/login")
-    public String login(HttpSession session) 
-    {
-        session.setAttribute("mySessionAttribute", "sasas");
-        // model.addAttribute("listProducts", listProducts);
-        return "redirect:/";
-    }
-
     @RequestMapping("/newImc")
-    public String showNewImcPage(Model model) 
+    public String showNewImcPage(Model model, @ModelAttribute("usuario") Usuario usuario) 
     {
         ImcDTO imcDTO = new ImcDTO();
+        imcDTO.setEmail(usuario.getEmail());
         model.addAttribute("imc", imcDTO);
-
         return "new_imc";
     }
     
     @RequestMapping("/newUsuario")
     public String showNewUserPage(Model model) 
     {
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        model.addAttribute("usuario", usuarioDTO);
-
+        model.addAttribute("usuario", new UsuarioDTO());
         return "new_usuario";
     }
     
     @RequestMapping(value = "/saveImc", method = RequestMethod.POST)
     public String saveImc(@ModelAttribute("imc") Imc imc) 
     {
+        float peso = imc.getPeso();
+        float estatura = imc.getEstatura();
+        imc.setImc((float) (peso / pow(estatura,2.0)));
         imcService.guardarImc(imc);
         return "redirect:/";
     }
@@ -85,17 +109,25 @@ public class AppController
         return "redirect:/";
     }
 
-    @RequestMapping("/edit/{id}")
+    @RequestMapping("/editImc/{id}")
     public ModelAndView showEditImcPage(@PathVariable(name = "id") int id) {
         ModelAndView mav = new ModelAndView("edit_imc");
         Optional<Imc> imc = imcService.getImcById(id);
         mav.addObject("imc", imc);
         return mav;
     }
-
+    
     @RequestMapping("/delete/{id}")
-    public String deleteImc(@PathVariable(name = "id") int id) {
+    public String deleteImc(@PathVariable(name = "id") int id) 
+    {
         imcService.borrarImc(id);
+        return "redirect:/";
+    }
+    
+    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    public String logout(HttpSession session) 
+    {
+        session.setAttribute("mySessionAttribute", null);
         return "redirect:/";
     }
 }

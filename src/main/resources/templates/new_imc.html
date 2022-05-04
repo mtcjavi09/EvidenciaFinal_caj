@@ -10,8 +10,13 @@
             <h1>Calcula tu imc</h1>
             <br/>
             <form action="#" th:action="@{/saveImc}" th:object="${imc}" method="post">
-
                 <table border="0" cellpadding="10">
+                    <tr>
+                        <td>Imc calculado por: </td>
+                        <td>
+                            <input type="text" th:field="*{email}" readonly="readonly"/>
+                        </td>
+                    </tr>
                     <tr>
                         <td>Ingresa tu estatura:</td>
                         <td><input type="text" th:field="*{estatura}" /></td>

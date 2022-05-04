@@ -24,8 +24,7 @@
                         <div class="col-md-7">
                             <div class="card-body">
                                 <p class="login-card-description">Inicia sesión en tu cuenta IMC</p>
-                                <form action="#" th:action="@{/login}" th:object="${formulario}" 
-                                      method="post">
+                                <form action="#" th:action="@{/login}" th:object="${formulario}" method="post">
                                     <div class="form-group">
                                         <label for="usuario" class="sr-only">Usuario:</label>
                                         <input type="email" name="usuario" id="email" class="form-control" placeholder="xxxx@dominio.xxx" th:field="*{email}">
