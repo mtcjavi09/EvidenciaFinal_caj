@@ -19,25 +19,27 @@
                     <tr>				
                         <td>Ingresa el(los) nuevo(s) nombre(s):</td>
                         <td>
-                            <input type="text" th:field="*{nombre}"/>
+                            <input type="text" th:field="*{nombre}" required="true"/>
                         </td>
                     </tr>
                     <tr>				
                         <td>Ingresa los nuevos apellidos:</td>
                         <td>
-                            <input type="text" th:field="*{apellido}"/>
+                            <input type="text" th:field="*{apellido}" required="true"/>
                         </td>
                     </tr>
                     <tr>				
                         <td>Ingresa la nueva edad:</td>
                         <td>
-                            <input type="text" th:field="*{edad}"/>
+                            <input type="text" th:field="*{edad}" required="true"/>
                         </td>
                     </tr>
                     <tr>				
                         <td>Ingresa el nuevo género:</td>
                         <td>
-                            <input type="text" th:field="*{genero}"/>
+                            <input type="radio" th:field="*{genero}" value="F" required="true"/>Femenino
+                            <input type="radio" th:field="*{genero}" value="M" required="true"/>Masculino
+                            <input type="radio" th:field="*{genero}" value="X" required="true"/>No quiero decirlo
                         </td>
                     </tr>
                     <tr>				
@@ -47,9 +49,9 @@
                         </td>
                     </tr>
                     <tr>				
-                        <td>Tu contraseña es: </td>
+                        <td>Ingresa tu contraseña para verificar la operación: </td>
                         <td>
-                            <input type="password" th:field="*{contraseña}" readonly="readonly"/>
+                            <input type="password" th:field="*{contraseña}" required="true"/>
                         </td>
                     </tr>
                     <tr>

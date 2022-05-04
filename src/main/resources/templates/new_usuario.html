@@ -14,31 +14,31 @@
                 <table border="0" cellpadding="10">
                     <tr>
                         <td>Ingresa tu(s) nombre(s):</td>
-                        <td><input type="text" th:field="*{nombre}" placeholder="Tus nombres"/></td>
+                        <td><input type="text" th:field="*{nombre}" required="true"/></td>
                     </tr>
                     <tr>
                         <td>Ingresa tus apellidos:</td>
-                        <td><input type="text" th:field="*{apellido}" placeholder="Tus apellidos"/></td>
+                        <td><input type="text" th:field="*{apellido}" required="true"/></td>
                     </tr>
                     <tr>
                         <td>Ingresa tu edad:</td>
-                        <td><input type="text" th:field="*{edad}" placeholder="Tu edad actual"/></td>
+                        <td><input type="text" th:field="*{edad}" required="true" min=15/></td>
                     </tr>
                     <tr>
                         <td>Ingresa tu género:</td>
                         <td>
-                            <input type="radio" th:field="*{genero}" value="F"/>Femenino
-                            <input type="radio" th:field="*{genero}" value="M"/>Masculino
-                            <input type="radio" th:field="*{genero}" value="X"/>No quiero decirlo
+                            <input type="radio" th:field="*{genero}" value="F" required="true"/>Femenino
+                            <input type="radio" th:field="*{genero}" value="M" required="true"/>Masculino
+                            <input type="radio" th:field="*{genero}" value="X" required="true"/>No quiero decirlo
                         </td>
                     </tr>
                     <tr>
                         <td>Ingresa tu email</td>
-                        <td><input type="email" th:field="*{email}" placeholder="xxxx@dominio.xxx"/></td>
+                        <td><input type="email" th:field="*{email}" required="true"/></td>
                     </tr>
                     <tr>
                         <td>Ingresa tu contraseña</td>
-                        <td><input type="password" th:field="*{contraseña}" placeholder="***********"/></td>
+                        <td><input type="password" th:field="*{contraseña}" required="true" min=4/></td>
                     </tr>
                     <tr>
                         <td colspan="2"><button type="submit">Crear usuario</button> </td>

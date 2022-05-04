@@ -2,7 +2,6 @@ package net.codejava.controller;
 
 import static java.lang.Math.pow;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;

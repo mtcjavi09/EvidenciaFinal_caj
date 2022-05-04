@@ -13,6 +13,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import lombok.Data;
 import net.codejava.dto.UsuarioDTO;
 
@@ -23,26 +28,36 @@ public class Usuario
 {
     //Columnas que contendrá la tabla en base de datos
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.AUTO)    
     private int id;
     
     @Column(name="nombre")
+    @NotEmpty(message="Necesitas agregar tu(s) nombre(s)")
     private String nombre;
 
     @Column(name="apellido")
+    @NotEmpty(message="Necesitas agregar tus apellidos")
     private String apellido;
     
     @Column(name="edad")
+    @NotEmpty(message="No puedes dejar vacío este campo")
+    @NotNull(message="Debes ingresar una edad válida")
+    @Min(value=15, message="No puedes registrarte si tienes menos de 15 años")
     private int edad;
     
     @Column(name="genero")
+    @NotEmpty(message="Necesitas definir tu género")
     private char genero;
     
     @Column(name="email")
+    @Email(message="El email debe tener el formato válido")
+    @NotNull(message="El email no puede estar nulo")    
     private String email;
     
     @Column(name="contraseña")
+    @Size(min=4, message="La contraseña debe tener mínimo 4 caracteres")
+    @NotEmpty(message="Necesitas ingresar tu contraseña")
     private String contraseña;
 
     //Se generan los constructores necesarios para la aplicación

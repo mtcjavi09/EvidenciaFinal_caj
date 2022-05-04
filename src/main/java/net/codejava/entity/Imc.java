@@ -15,6 +15,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import lombok.Data;
 import net.codejava.dto.ImcDTO;
 import org.hibernate.annotations.CreationTimestamp;
@@ -26,20 +31,25 @@ public class Imc
 {
     //Columnas que contendrá la tabla en base de datos
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
     @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.AUTO)    
     private int id;
 
     @Column(name="email")
+    @Email(message="El email debe tener el formato válido")
     private String email;
 
     @Column(name="estatura")
+    @NotEmpty(message="Necesitas ingresar una estatura")
     private float estatura;
     
     @Column(name="peso")
+    @NotEmpty(message="Necesitas ingresar un peso")
     private float peso;
     
     @Column(name="imc")
+    @Positive(message="El IMC no puede ser negativo")
+    @Min(value=1, message="El IMC no puede ser cero")
     private float imc;
     
     @Column(name="fecha")
