@@ -15,8 +15,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
@@ -35,9 +33,9 @@ public class Imc
     @GeneratedValue(strategy=GenerationType.AUTO)    
     private int id;
 
-    @Column(name="email")
-    @Email(message="El email debe tener el formato válido")
-    private String email;
+    @Column(name="idUsuario")
+    @NotNull(message = "No puede existir un cálculo sin un usuario")
+    private int idUsuario;
 
     @Column(name="estatura")
     @Min(value=1, message="La estatura no puede ser menor a 1 metro")
@@ -69,7 +67,7 @@ public class Imc
     public Imc(ImcDTO imcDTO) 
     {
         this.id = imcDTO.getId();
-        this.email = imcDTO.getEmail();
+        this.idUsuario = imcDTO.getIdUsuario();
         this.estatura = imcDTO.getEstatura();
         this.peso = imcDTO.getPeso();
         this.imc = imcDTO.getImc();
@@ -80,8 +78,8 @@ public class Imc
     //Getters y setters
     public int getId() {return id;}
     public void setId(int id) {this.id = id;}
-    public String getEmail() {return email;}
-    public void setEmail(String email) {this.email = email;}
+    public int getIdUsuario() {return idUsuario;}
+    public void setIdUsuario(int idUsuario) {this.idUsuario = idUsuario;}
     public float getEstatura() {return estatura;}
     public void setEstatura(float estatura) {this.estatura = estatura;}
     public float getPeso() {return peso;}

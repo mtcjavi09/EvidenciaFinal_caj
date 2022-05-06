@@ -50,15 +50,15 @@ public class AppController
                 sessionUser.add(loggedUser);
                 model.addAttribute("sessionUser", sessionUser);
 
-                //Se buscan los IMC a partir del correo de un usuario y se guarda en una Lista
+                //Se buscan los IMC a partir del id de un usuario y se guarda en una Lista
                 List<Imc> imcCompleto = (List<Imc>) imcService.getImc();
                 ArrayList<Imc> listImc = new ArrayList<>();
                 for(int x=0; x<imcCompleto.size(); x++)
                 {
                     Imc imcIndex = imcCompleto.get(x);
-                    String email = imcIndex.getEmail();
+                    int usuario = imcIndex.getIdUsuario();
                     
-                    if(email.equals(loggedUser.getEmail()))
+                    if(usuario == loggedUser.getId())
                     {listImc.add(imcIndex);}
                 }
 
@@ -134,11 +134,11 @@ public class AppController
     {
         try
         {
-            //Se guarda automáticamente el email del usuario en el objeto de tipo ImcDTO
+            //Se guarda automáticamente el id del usuario en el objeto de tipo ImcDTO
             Usuario loggedUser = (Usuario) session.getAttribute("usuarioAutenticado");
             ImcDTO imcDTO = new ImcDTO();
-            String email = loggedUser.getEmail();
-            imcDTO.setEmail(email);
+            int idUsuario = loggedUser.getId();
+            imcDTO.setIdUsuario(idUsuario);
 
             //Se guarda el objeto de tipo ImcDTO como un atributo del modelo
             model.addAttribute("imc", imcDTO);
