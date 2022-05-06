@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
-import net.codejava.Error;
 import net.codejava.Methods;
 import net.codejava.Formulario;
 import net.codejava.dto.ImcDTO;
@@ -47,13 +46,13 @@ public class AppController
             {
                 //Se obtiene el usuario autenticado y se guarda en un ArrayList y se guarda como atributo del modelo
                 Usuario loggedUser = (Usuario) session.getAttribute("usuarioAutenticado");
-                ArrayList<Usuario> sessionUser = new ArrayList();
+                ArrayList<Usuario> sessionUser = new ArrayList<>();
                 sessionUser.add(loggedUser);
                 model.addAttribute("sessionUser", sessionUser);
 
                 //Se buscan los IMC a partir del correo de un usuario y se guarda en una Lista
                 List<Imc> imcCompleto = (List<Imc>) imcService.getImc();
-                ArrayList<Imc> listImc = new ArrayList();
+                ArrayList<Imc> listImc = new ArrayList<>();
                 for(int x=0; x<imcCompleto.size(); x++)
                 {
                     Imc imcIndex = imcCompleto.get(x);
@@ -75,26 +74,18 @@ public class AppController
             }
         }
         catch(Exception e)
-        {
-            //Se crea una lista para guardar los atributos del error
-            ArrayList<Object> exception = new ArrayList<Object>();
-            //Se generan y se guardan el mensaje y la causa del error en un objeto de la lista
-            String bug = e.getMessage();
-            String causa= e.getCause().toString();
-            Error error = new Error(bug,causa);
-            exception.add(error);
-            
-            //Se guarda el objeto como atributo del modelo
-            model.addAttribute("exception", exception);
+        {   
+            //Se imprimen en consola el error y la causa
+            System.out.println("Error:" + e.getMessage());
+            System.out.println("Causa:" + e.getCause());
 
             //Se llama a la vista de los errores
             return "error";
         }
-
     }
 
     @RequestMapping("/login")
-    public String login(HttpSession session, Model model, @ModelAttribute("formulario") Formulario formulario) 
+    public String login(HttpSession session, @ModelAttribute("formulario") Formulario formulario) 
     {
         try
         {
@@ -128,17 +119,10 @@ public class AppController
             }
         }
         catch(Exception e)
-        {
-            //Se crea una lista para guardar los atributos del error
-            ArrayList<Object> exception = new ArrayList<Object>();
-            //Se generan y se guardan el mensaje y la causa del error en un objeto de la lista
-            String bug = e.getMessage();
-            String causa= e.getCause().toString();
-            Error error = new Error(bug,causa);
-            exception.add(error);
-
-            //Se guarda el objeto como atributo del modelo
-            model.addAttribute("exception", exception);
+        {   
+            //Se imprimen en consola el error y la causa
+            System.out.println("Error:" + e.getMessage());
+            System.out.println("Causa:" + e.getCause());
 
             //Se llama a la vista de los errores
             return "error";
@@ -163,17 +147,10 @@ public class AppController
             return "new_imc";
         }
         catch(Exception e)
-        {
-            //Se crea una lista para guardar los atributos del error
-            ArrayList<Object> exception = new ArrayList<Object>();
-            //Se generan y se guardan el mensaje y la causa del error en un objeto de la lista
-            String bug = e.getMessage();
-            String causa= e.getCause().toString();
-            Error error = new Error(bug,causa);
-            exception.add(error);
-
-            //Se guarda el objeto como atributo del modelo
-            model.addAttribute("exception", exception);
+        {   
+            //Se imprimen en consola el error y la causa
+            System.out.println("Error:" + e.getMessage());
+            System.out.println("Causa:" + e.getCause());
 
             //Se llama a la vista de los errores
             return "error";
@@ -196,16 +173,9 @@ public class AppController
         }
         catch(Exception e)
         {
-            //Se crea una lista para guardar los atributos del error
-            ArrayList<Object> exception = new ArrayList<Object>();
-            //Se generan y se guardan el mensaje y la causa del error en un objeto de la lista
-            String bug = e.getMessage();
-            String causa= e.getCause().toString();
-            Error error = new Error(bug,causa);
-            exception.add(error);
-
-            //Se guarda el objeto como atributo del modelo
-            model.addAttribute("exception", exception);
+            //Se imprimen en consola el error y la causa
+            System.out.println("Error:" + e.getMessage());
+            System.out.println("Causa:" + e.getCause());
 
             //Se llama a la vista de los errores
             return "error";
@@ -213,7 +183,7 @@ public class AppController
     }
     
     @RequestMapping(value = "/saveImc", method = RequestMethod.POST)
-    public String saveImc(@ModelAttribute("imc") Imc imc, Model model) 
+    public String saveImc(@ModelAttribute("imc") Imc imc) 
     {
         try
         {
@@ -238,17 +208,9 @@ public class AppController
         }
         catch(Exception e)
         {
-            //Se crea una lista para guardar los atributos del error
-            ArrayList<Object> exception = new ArrayList<Object>();
-            //Se generan y se guardan el mensaje y la causa del error en un objeto de la lista
-            String bug = e.getMessage();
-            String causa= e.getCause().toString();
-            Error error = new Error(bug,causa);
-            exception.add(error);
-
-            //Se guarda el objeto como atributo del modelo
-            model.addAttribute("exception", exception);
-
+            //Se imprimen en consola el error y la causa
+            System.out.println("Error:" + e.getMessage());
+            System.out.println("Causa:" + e.getCause());
 
             //Se llama a la vista de los errores
             return "error";
@@ -256,7 +218,7 @@ public class AppController
     }
 
     @RequestMapping(value = "/saveUsuario", method = RequestMethod.POST)
-    public String saveUsuario(@ModelAttribute("usuario") Usuario usuario, Model model) 
+    public String saveUsuario(@ModelAttribute("usuario") Usuario usuario) 
     {
         try
         {
@@ -265,18 +227,11 @@ public class AppController
             return "redirect:/";
         }
         catch(Exception e)
-        {
-            //Se crea una lista para guardar los atributos del error
-            ArrayList<Object> exception = new ArrayList<Object>();
-            //Se generan y se guardan el mensaje y la causa del error en un objeto de la lista
-            String bug = e.getMessage();
-            String causa= e.getCause().toString();
-            Error error = new Error(bug,causa);
-            exception.add(error);
+        {           
+            //Se imprimen en consola el error y la causa
+            System.out.println("Error:" + e.getMessage());
+            System.out.println("Causa:" + e.getCause());
 
-            //Se guarda el objeto como atributo del modelo
-            model.addAttribute("exception", exception);
-            
             //Se llama a la vista de los errores
             return "error";
         }
@@ -305,16 +260,40 @@ public class AppController
     @RequestMapping("/delete/{id}")
     public String deleteImc(@PathVariable(name = "id") int id) 
     {
-        //Se usa el imc para borrar el id y posteriormente se regresa a la última vista
-        imcService.borrarImc(id);
-        return "redirect:/";
+        try
+        {
+            //Se usa el imc para borrar el id y posteriormente se regresa a la última vista
+            imcService.borrarImc(id);
+            return "redirect:/";
+        }
+        catch(Exception e)
+        {
+            //Se imprimen en consola el error y la causa
+            System.out.println("Error:" + e.getMessage());
+            System.out.println("Causa:" + e.getCause());
+
+            //Se llama a la vista de los errores
+            return "error";
+        }
     }
     
-    @RequestMapping(value = "/logout", method = RequestMethod.POST)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logout(HttpSession session) 
     {
-        //Se cambia el atributo a null para regresar a la página del login
-        session.setAttribute("mySessionAttribute", null);
-        return "redirect:/";
+        try
+        {
+            //Se cambia el atributo a null para regresar a la página del login
+            session.setAttribute("mySessionAttribute", null);
+            return "redirect:/";
+        }
+        catch(Exception e)
+        {
+            //Se imprimen en consola el error y la causa
+            System.out.println("Error:" + e.getMessage());
+            System.out.println("Causa:" + e.getCause());
+
+            //Se llama a la vista de los errores
+            return "error";
+        }
     }
 }

@@ -7,7 +7,6 @@
 
 package net.codejava.entity;
 
-import java.lang.annotation.Repeatable;
 //Se importan las librerías necesarias para la entidad
 import java.util.Date;
 import javax.persistence.Column;
@@ -42,7 +41,6 @@ public class Imc
 
     @Column(name="estatura")
     @Min(value=1, message="La estatura no puede ser menor a 1 metro")
-    @Max(value=(long) 2.5, message="La estatura no puede sobrepasar 2.5 metros")
     private float estatura;
     
     @Column(name="peso")    

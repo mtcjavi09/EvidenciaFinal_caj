@@ -9,7 +9,6 @@ package net.codejava.dto;
 
 import java.util.Date;
 import lombok.Data;
-import static java.lang.Math.pow;
 
 @Data
 public class ImcDTO 
