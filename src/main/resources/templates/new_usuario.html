@@ -10,7 +10,6 @@
             <h1>Nuevo usuario</h1>
             <br/>
             <form action="#" th:action="@{/saveUsuario}" th:object="${usuario}" method="post">
-
                 <table border="0" cellpadding="10">
                     <tr>
                         <td>Ingresa tu(s) nombre(s):</td>
@@ -41,7 +40,11 @@
                         <td><input type="password" th:field="*{contraseña}" required="true" min=4/></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><button type="submit">Crear usuario</button> </td>
+                        <td colspan="2">
+                            <button type="button"><a href="/">Regresar</a></button>
+                            <button type="submit">Crear usuario</button>
+                            <button type="reset">Limpiar campos</button>
+                        </td>
                     </tr>
                 </table>
             </form>

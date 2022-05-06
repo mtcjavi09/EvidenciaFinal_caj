@@ -9,9 +9,9 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     </head>
     <body>
+        </br><div align="right"><button type="button"><a th:href="logout">Cerrar mi sesión</a></button></div>
         <div align="center">
-            <h1></br>Bienvenid@ a tu cuenta IMC</h1>
-            <br/>
+            <h1></br>Bienvenid@ a tu cuenta IMC</h1><br/>
             Tus datos:<br/>
             <br/>
             <table border="1" cellpadding="10" class="table table-striped table-hover">
@@ -41,7 +41,7 @@
                 </tbody>
             </table>
             <br/><br/>
-            Tus cálculos:</br><a href="newImc">Calcular nuevo IMC</a><div></br>
+            Tus cálculos:</br><a href="newImc">Calcular nuevo IMC</a></br></br>
             <table border="1" cellpadding="10" class="table table-striped table-hover">
                 <thead>
                     <tr>
@@ -68,10 +68,6 @@
                     </tr>
                 </tbody>
             </table>
-            <form action="#" th:action="@{/logout}" method="post">
-                <tr><td colspan="2"><button type="submit">Cerrar sesión</button></td></tr>
-            </form>
         </div>
-        
     </body>
 </html>
