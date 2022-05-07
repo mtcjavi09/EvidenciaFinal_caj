@@ -2,7 +2,7 @@
     EVIDENCIA FINAL     : ImcService
     AUTORA              : Maria Tchijov Cruz
     FECHA               : 11 abr 2022
-    Servicio para la tabla IMC
+    Servicio para la tabla imc
 */
 
 package net.codejava.services;
