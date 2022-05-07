@@ -89,34 +89,18 @@ public class AppController
     {
         try
         {
-            //Se guardan los usuarios de la base de datos en una lista
-            List<Usuario> listUsuarios = userService.getUsuario();
-            session.setAttribute("listUsuarios", listUsuarios);
-            //Se busca al usuario según su email y contraseña
-            boolean encontrado = listUsuarios.stream().anyMatch(x -> 
-                    x.getEmail().equals(formulario.getEmail()) 
-                            && x.getContraseña().equals(formulario.getPassword()));
+            Usuario usuarioIndex = formulario.searchUser(formulario);
+            session.setAttribute("mySessionAttribute", usuarioIndex);
 
-            //Si se encontró, se guardará la información del usuario en un atributo como objeto de tipo usuario
-            if (encontrado == true)
+            //Si el usuario no es nulo, se podrá ingresar a la aplicación
+            if (session.getAttribute("mySessionAttribute") != null)
             {
-                session.setAttribute("mySessionAttribute", "login");
-                for(int x=0; x<listUsuarios.size(); x++)
-                {
-                    Usuario usuarioIndex = listUsuarios.get(x);
-                    String email = usuarioIndex.getEmail();
-                    
-                    if(email.equals(formulario.getEmail()))
-                    {session.setAttribute("usuarioAutenticado", usuarioIndex);}
-                }
+                session.setAttribute("usuarioAutenticado", usuarioIndex);
                 return "redirect:/";
             }
-            //Si no se encontró, simplemente no dejará continuar, quedando en la misma vista del login
+            //Si el usuario es nulo, no dejará continuar, quedando en la misma vista del login
             else
-            {
-                session.setAttribute("mySessionAttribute", null);
-                return "login";
-            }
+            {return "login";}
         }
         catch(Exception e)
         {   
