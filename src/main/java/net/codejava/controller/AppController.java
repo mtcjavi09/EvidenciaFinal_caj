@@ -89,18 +89,26 @@ public class AppController
     {
         try
         {
-            Usuario usuarioIndex = formulario.searchUser(formulario);
-            session.setAttribute("mySessionAttribute", usuarioIndex);
+            //Se guardan los usuarios de la base de datos en una lista
+            List<Usuario> listUsuarios = userService.getUsuario();
+            session.setAttribute("listUsuarios", listUsuarios);
+            String email = formulario.getEmail();
+            String contraseña = formulario.getPassword();
+            Usuario usuarioIndex = formulario.searchUser(listUsuarios,email,contraseña);
 
             //Si el usuario no es nulo, se podrá ingresar a la aplicación
-            if (session.getAttribute("mySessionAttribute") != null)
+            if (usuarioIndex != null)
             {
+                session.setAttribute("mySessionAttribute", "login");
                 session.setAttribute("usuarioAutenticado", usuarioIndex);
                 return "redirect:/";
             }
             //Si el usuario es nulo, no dejará continuar, quedando en la misma vista del login
             else
-            {return "login";}
+            {
+                session.setAttribute("mySessionAttribute", null);
+                return "login";
+            }
         }
         catch(Exception e)
         {   
