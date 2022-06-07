@@ -97,7 +97,7 @@ public class AppController
             Usuario usuarioIndex = formulario.searchUser(listUsuarios,email,contraseña);
 
             //Si el usuario no es nulo, se podrá ingresar a la aplicación
-            if (usuarioIndex != null)
+            if (usuarioIndex.getId() != 0)
             {
                 session.setAttribute("mySessionAttribute", "login");
                 session.setAttribute("usuarioAutenticado", usuarioIndex);
