@@ -1,7 +1,5 @@
--- Este archivo está con formato .txt ya que se están agregando las consultas vía DBeaver, --
---      y la sintaxis necesaria no es correcta para visual studio --
-
- -- se cambian los tipos de dato de las columnas y se agregan las constraint unique necesarias --
+''' CAMBIOS A LA BASE DE DATOS DE POSTGRE SQL '''
+-- se cambian los tipos de dato de las columnas y se agregan las constraint unique necesarias --
 
 alter table usuario add constraint unique_id unique(id),
 alter column id
