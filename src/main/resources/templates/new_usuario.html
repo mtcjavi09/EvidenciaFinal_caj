@@ -12,41 +12,41 @@
                 <legend>Nuevo usuario</legend>
                 <div class="form-group">
                     <label class="form-label mt-4">Ingresa tu(s) nombre(s):</label>
-                    <input type="text" class="form-control" th:field="*{nombre}" required="true"/>
+                    <input type="text" class="form-control" th:field="*{nombre}" required/>
                 <div/>
                 <div class="form-group">
                     <label class="form-label mt-4">Ingresa tus apellidos:</label>
-                    <input type="text" class="form-control" th:field="*{apellido}" required="true"/>
+                    <input type="text" class="form-control" th:field="*{apellido}" required/>
                 </div>
                 <div class="form-group">
                     <label class="form-label mt-4">Ingresa tu edad:</label>
-                    <input type="number" class="form-control" th:field="*{edad}" min="15" required="true"/>
+                    <input type="number" class="form-control" th:field="*{edad}" min="15" required/>
                 </div>
                 <div class="form-group">
                     <label class="form-label mt-4">Ingresa tu género:</label>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" th:field="*{genero}" value="F" required="true"/>Femenino
+                            <input type="radio" class="form-check-input" th:field="*{genero}" value="F" required/>Femenino
                         </label>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" th:field="*{genero}" value="M" required="true"/>Masculino
+                            <input type="radio" class="form-check-input" th:field="*{genero}" value="M" required/>Masculino
                         </label>
                     </div>
                     <div class="form-check">
                         <label class="form-check-label">
-                            <input type="radio" class="form-check-input" th:field="*{genero}" value="X" required="true"/>No quiero decirlo
+                            <input type="radio" class="form-check-input" th:field="*{genero}" value="X" required/>No quiero decirlo
                         </label>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="form-label mt-4">Ingresa tu email:</label>
-                    <input type="email" class="form-control" th:field="*{email}" required="true"/>
+                    <input type="email" class="form-control" th:field="*{email}" required/>
                 </div>
                 <div class="form-group">
                     <label class="form-label mt-4">Ingresa tu contraseña:</label>
-                    <input type="password" class="form-control" th:field="*{contraseña}" required="true" min=4/>
+                    <input type="password" class="form-control" th:field="*{contraseña}" required min=4/>
                 </div>
                 <br/>
                 <div align="center">
