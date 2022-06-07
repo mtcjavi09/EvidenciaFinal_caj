@@ -4,49 +4,56 @@
     <head>
         <meta charset="utf-8" />
         <title>Registrar nuevo usuario</title>
+        <link rel="stylesheet" href="https://bootswatch.com/5/pulse/bootstrap.min.css">
     </head>
     <body>
-        <div align="center">
-            <h1>Nuevo usuario</h1>
-            <br/>
+        <div align="left" style="padding: 1% 23%">
             <form action="#" th:action="@{/saveUsuario}" th:object="${usuario}" method="post">
-                <table border="0" cellpadding="10">
-                    <tr>
-                        <td>Ingresa tu(s) nombre(s):</td>
-                        <td><input type="text" th:field="*{nombre}" required="true"/></td>
-                    </tr>
-                    <tr>
-                        <td>Ingresa tus apellidos:</td>
-                        <td><input type="text" th:field="*{apellido}" required="true"/></td>
-                    </tr>
-                    <tr>
-                        <td>Ingresa tu edad:</td>
-                        <td><input type="number" th:field="*{edad}" min="15" required="true"/></td>
-                    </tr>
-                    <tr>
-                        <td>Ingresa tu género:</td>
-                        <td>
-                            <input type="radio" th:field="*{genero}" value="F" required="true"/>Femenino
-                            <input type="radio" th:field="*{genero}" value="M" required="true"/>Masculino
-                            <input type="radio" th:field="*{genero}" value="X" required="true"/>No quiero decirlo
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Ingresa tu email</td>
-                        <td><input type="email" th:field="*{email}" required="true"/></td>
-                    </tr>
-                    <tr>
-                        <td>Ingresa tu contraseña</td>
-                        <td><input type="password" th:field="*{contraseña}" required="true" min=4/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <button type="button"><a href="/">Regresar</a></button>
-                            <button type="submit">Crear usuario</button>
-                            <button type="reset">Limpiar campos</button>
-                        </td>
-                    </tr>
-                </table>
+                <legend>Nuevo usuario</legend>
+                <div class="form-group">
+                    <label class="form-label mt-4">Ingresa tu(s) nombre(s):</label>
+                    <input type="text" class="form-control" th:field="*{nombre}" required="true"/>
+                <div/>
+                <div class="form-group">
+                    <label class="form-label mt-4">Ingresa tus apellidos:</label>
+                    <input type="text" class="form-control" th:field="*{apellido}" required="true"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Ingresa tu edad:</label>
+                    <input type="number" class="form-control" th:field="*{edad}" min="15" required="true"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Ingresa tu género:</label>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" th:field="*{genero}" value="F" required="true"/>Femenino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" th:field="*{genero}" value="M" required="true"/>Masculino
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label">
+                            <input type="radio" class="form-check-input" th:field="*{genero}" value="X" required="true"/>No quiero decirlo
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Ingresa tu email:</label>
+                    <input type="email" class="form-control" th:field="*{email}" required="true"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-label mt-4">Ingresa tu contraseña:</label>
+                    <input type="password" class="form-control" th:field="*{contraseña}" required="true" min=4/>
+                </div>
+                <br/>
+                <div align="center">
+                    <button onclick="window.location.href='/'" class="btn btn-info" type="button">Regresar</button>
+                    <button class="btn btn-info" type="submit">Crear usuario</button>
+                    <button class="btn btn-info" type="reset">Limpiar campos</button>
+                </div>
             </form>
         </div>
     </body>
