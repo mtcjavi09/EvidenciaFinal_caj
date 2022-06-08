@@ -10,8 +10,18 @@ package net.codejava;
 
 import static java.lang.Math.pow;
 
+import java.security.MessageDigest;
+import java.util.Arrays;
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
+import com.sun.org.apache.xml.internal.security.utils.Base64;
+
 public class Methods 
 {
+
+    //Variable con llave de encriptado y desencriptado
+    String LLAVE = "POSTGRESQL";
+
     //Método para calcular el IMC
     public float calculaImc(float estatura, float peso)
     {
@@ -46,5 +56,53 @@ public class Methods
         }
     }
 
-    //Mét
+    //Método para generar la clave de encriptación
+    public SecretKeySpec generarClave(String llave) 
+    {
+        try 
+        {
+            byte[] cadena = llave.getBytes("UTF-8");
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            cadena = md.digest(cadena);
+            cadena = Arrays.copyOf(cadena, 16);
+            SecretKeySpec secretKeySpec = new SecretKeySpec(cadena, "AES");
+            return secretKeySpec;
+        } 
+        catch (Exception e) 
+        {return null;}
+    }
+
+    //Método para encriptar la contraseña
+    public String encriptar(String contraseña) 
+    {
+        try
+        {
+            SecretKeySpec secretKeySpec = generarClave(LLAVE);
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.ENCRYPT_MODE, secretKeySpec);
+            byte[] cadena = contraseña.getBytes("UTF-8");
+            byte[] encriptada= cipher.doFinal(cadena);
+            String contraseñaEncriptada = Base64.encode(encriptada);
+            return contraseñaEncriptada;
+        }
+        catch(Exception e)
+        {return "";}
+    }
+
+    //Método para descencriptar la contraseña
+    public String descencriptar(String contraseña) 
+    {
+        try
+        {
+            SecretKeySpec secretKeySpec = generarClave(LLAVE);
+            Cipher cipher = Cipher.getInstance("AES");
+            cipher.init(Cipher.DECRYPT_MODE, secretKeySpec);
+            byte[] cadena = Base64.decode(contraseña);
+            byte[] desencriptado = cipher.doFinal(cadena);
+            String contraseñaEncriptada = new String(desencriptado);
+            return contraseñaEncriptada;
+        }
+        catch(Exception e)
+        {return "";}
+    }
 }
